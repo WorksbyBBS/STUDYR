@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="210dp"
+    tools:layout_editor_absoluteY="25dp">
+
+    <ImageView
+        android:id="@+id/color1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice1"
+        app:layout_constraintBottom_toTopOf="@+id/color5"
+        app:layout_constraintEnd_toStartOf="@+id/color2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice2"
+        app:layout_constraintBottom_toTopOf="@+id/color6"
+        app:layout_constraintEnd_toStartOf="@+id/color3"
+        app:layout_constraintStart_toEndOf="@+id/color1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice3"
+        app:layout_constraintBottom_toTopOf="@+id/color7"
+        app:layout_constraintEnd_toStartOf="@+id/color4"
+        app:layout_constraintStart_toEndOf="@+id/color2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice4"
+        app:layout_constraintBottom_toTopOf="@+id/color8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/color3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice5"
+        app:layout_constraintBottom_toTopOf="@+id/color9"
+        app:layout_constraintEnd_toStartOf="@+id/color6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/color1"
+        app:srcCompat="@drawable/vector_circle" />
+
+
+    <ImageView
+        android:id="@+id/color6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice6"
+        app:layout_constraintBottom_toTopOf="@+id/color10"
+        app:layout_constraintEnd_toStartOf="@+id/color7"
+        app:layout_constraintStart_toEndOf="@+id/color5"
+        app:layout_constraintTop_toBottomOf="@+id/color2"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="11dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice7"
+        app:layout_constraintBottom_toTopOf="@+id/color11"
+        app:layout_constraintEnd_toStartOf="@+id/color8"
+        app:layout_constraintStart_toEndOf="@+id/color6"
+        app:layout_constraintTop_toBottomOf="@+id/color3"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="6dp"
+        android:layout_marginEnd="15dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice8"
+        app:layout_constraintBottom_toTopOf="@+id/color12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/color7"
+        app:layout_constraintTop_toBottomOf="@+id/color4"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="9dp"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/color10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/color5"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/color11"
+        app:layout_constraintStart_toEndOf="@+id/color9"
+        app:layout_constraintTop_toBottomOf="@+id/color6"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="11dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/color12"
+        app:layout_constraintStart_toEndOf="@+id/color10"
+        app:layout_constraintTop_toBottomOf="@+id/color7"
+        app:srcCompat="@drawable/vector_circle" />
+
+    <ImageView
+        android:id="@+id/color12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="15dp"
+        android:clickable="true"
+        android:tint="@color/colorCourseChoice12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/color11"
+        app:layout_constraintTop_toBottomOf="@+id/color8"
+        app:srcCompat="@drawable/vector_circle" />
+</android.support.constraint.ConstraintLayout>

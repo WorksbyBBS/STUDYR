@@ -3,4 +3,17 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#b13660</color>
+
+    <color name="colorCourseChoice1">#694f5d</color>
+    <color name="colorCourseChoice2">#68A691</color>
+    <color name="colorCourseChoice3">#BFD3C1</color>
+    <color name="colorCourseChoice4">#ffc0cb</color>
+    <color name="colorCourseChoice5">#587291</color>
+    <color name="colorCourseChoice6">#2F97C1</color>
+    <color name="colorCourseChoice7">#C98BB9</color>
+    <color name="colorCourseChoice8">#F7D4BC</color>
+    <color name="colorCourseChoice9">#D64550</color>
+    <color name="colorCourseChoice10">#FFC857</color>
+    <color name="colorCourseChoice11">#8F5C38</color>
+    <color name="colorCourseChoice12">#5B5F97</color>
 </resources>

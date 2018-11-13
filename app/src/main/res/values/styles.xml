@@ -6,6 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+
+        <!--<item name="colorCourseChoice1">@color/colorCourseChoice1</item>-->
+        <!--<item name="colorCourseChoice2">@color/colorCourseChoice2</item>-->
+        <!--<item name="colorCourseChoice3">@color/colorCourseChoice3</item>-->
+        <!--<item name="colorCourseChoice4">@color/colorCourseChoice4</item>-->
+        <!--<item name="colorCourseChoice5">@color/colorCourseChoice5</item>-->
+        <!--<item name="colorCourseChoice6">@color/colorCourseChoice6</item>-->
+        <!--<item name="colorCourseChoice7">@color/colorCourseChoice7</item>-->
+        <!--<item name="colorCourseChoice8">@color/colorCourseChoice8</item>-->
+        <!--<item name="colorCourseChoice9">@color/colorCourseChoice9</item>-->
+        <!--<item name="colorCourseChoice10">@color/colorCourseChoice10</item>-->
+        <!--<item name="colorCourseChoice11">@color/colorCourseChoice11</item>-->
+        <!--<item name="colorCourseChoice12">@color/colorCourseChoice12</item>-->
     </style>
 
 </resources>

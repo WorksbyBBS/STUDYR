@@ -6,16 +6,14 @@ public class Assignment {
     public int courseId;
     public String dueDate;
     public String dueTime;
-    public String priority;
     public String notes;
 
-    public Assignment(int assignmentId, String title, int courseId, String dueDate, String dueTime, String priority, String notes) {
+    public Assignment(int assignmentId, String title, int courseId, String dueDate, String dueTime, String notes) {
         this.assignmentId = assignmentId;
         this.title = title;
         this.courseId = courseId;
         this.dueDate = dueDate;
         this.dueTime = dueTime;
-        this.priority = priority;
         this.notes = notes;
     }
 
@@ -57,14 +55,6 @@ public class Assignment {
 
     public void setDueTime(String dueTime) {
         this.dueTime = dueTime;
-    }
-
-    public String getPriority() {
-        return priority;
-    }
-
-    public void setPriority(String priority) {
-        this.priority = priority;
     }
 
     public String getNotes() {

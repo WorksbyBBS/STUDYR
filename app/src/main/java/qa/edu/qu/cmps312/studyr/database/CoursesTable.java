@@ -9,7 +9,7 @@ public class CoursesTable {
             "CREATE TABLE " + TABLE_COURSES + "(" +
                     COLUMN_ID + " INTEGER PRIMARY KEY," +
                     COLUMN_NAME + " TEXT," +
-                    COLUMN_COLORID + " TEXT" + ");";
+                    COLUMN_COLORID + " INTEGER" + ");";
     public static final String SQL_DELETE =
             "DROP TABLE " + TABLE_COURSES;
 }

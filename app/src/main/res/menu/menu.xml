@@ -4,26 +4,19 @@
 
 
     <item
-        android:id="@+id/action_more"
-        android:icon="@drawable/ic_more_vert_black_24dp"
-        android:title=""
-        app:showAsAction="always">
-    <menu>
-        <item
-            android:id="@+id/menu_schedule"
-            android:icon="@drawable/schedule_vector"
-            android:title="Schedule"
-            app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/menu_assignments"
-            android:icon="@drawable/assignments_vector"
-            android:title="Assignments"
-            app:showAsAction="ifRoom" />
-        <item
-            android:id="@+id/menu_courses"
-            android:icon="@drawable/courses_vector"
-            android:title="Courses"
-            app:showAsAction="ifRoom" />
-    </menu>
-    </item>
+        android:id="@+id/menu_schedule"
+        android:icon="@drawable/schedule_vector"
+        android:title="Schedule"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menu_assignments"
+        android:icon="@drawable/assignments_vector"
+        android:title="Assignments"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menu_courses"
+        android:icon="@drawable/courses_vector"
+        android:title="Courses"
+        app:showAsAction="ifRoom|withText" />
+
 </menu>

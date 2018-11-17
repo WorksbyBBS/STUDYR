@@ -1,5 +1,7 @@
 package qa.edu.qu.cmps312.studyr.models;
 
+import java.util.ArrayList;
+
 public class Class {
 
     public int classId;
@@ -84,5 +86,13 @@ public class Class {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public static ArrayList<Class> populateExampleClass(){
+        ArrayList<Class> c = new ArrayList<>();
+        c.add(new Class(1,1,"8:00","8:50","17/11/2018","20/11/2018","Sat,Sun,Tue,Thurs","C07-224"));
+        c.add(new Class(2,1,"11:00","11:50","18/11/2018","20/11/2018","Sat,Sun,Tue,Thurs","C07-250"));
+        c.add(new Class(3,2,"11:00","11:50","19/11/2018","20/11/2018","Mon","C07-105"));
+        return c;
     }
 }

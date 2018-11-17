@@ -8,8 +8,11 @@ import android.support.annotation.ColorInt;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +20,8 @@ import android.widget.Button;
 import android.support.design.widget.FloatingActionButton;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import qa.edu.qu.cmps312.studyr.models.Course;
 
@@ -31,6 +36,12 @@ public class CourseActivity extends AppCompatActivity {
     private ImageView colorPickedImageView;
     private FloatingActionButton floatingAddButton;
     private View myCustomCourseDialogLayout;
+    private RecyclerView myRecyclerView;
+    private CourseAdapter courseAdapter;
+    private ArrayList<Course> courses;
+    private ArrayList<Integer> totalAssignments;
+    private View rowLayout;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,7 @@ public class CourseActivity extends AppCompatActivity {
         colorPickedImageView = myCustomCourseDialogLayout.findViewById(R.id.add_edit_chosen_color_imageView);
         chooseColorButton = myCustomCourseDialogLayout.findViewById(R.id.add_edit_course_choose_color);
 
+        //PICK COLOR PART
         chooseColorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +91,23 @@ public class CourseActivity extends AppCompatActivity {
                 });
             }
         });
+
+
+        //RECYCLERVIEW PART
+        View rowLayout = getLayoutInflater().inflate(R.layout.course_row_design,null,false);
+        myRecyclerView = findViewById(R.id.courseRecyclerView);
+
+        courses = Course.populateExampleCourses();
+        totalAssignments = new ArrayList<>();
+        totalAssignments.add(10);
+        totalAssignments.add(5);
+
+        courseAdapter = new CourseAdapter(courses,totalAssignments, this);
+
+        layoutManager = new LinearLayoutManager(this);
+        myRecyclerView.setLayoutManager(layoutManager);
+        myRecyclerView.setAdapter(courseAdapter);
+
 
 
     }

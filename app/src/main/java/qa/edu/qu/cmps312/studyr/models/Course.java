@@ -1,5 +1,7 @@
 package qa.edu.qu.cmps312.studyr.models;
 
+import java.util.ArrayList;
+
 public class Course {
 
     private int courseId;
@@ -34,5 +36,12 @@ public class Course {
         this.courseId = courseId;
         this.courseName = courseName;
         this.colorId = colorId;
+    }
+
+    public static ArrayList<Course> populateExampleCourses(){
+        ArrayList<Course> c = new ArrayList<>();
+        c.add(new Course(1,"GENG300","#42f4f1"));
+        c.add(new Course(2,"CMPS312","#d3f441"));
+        return c;
     }
 }

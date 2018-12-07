@@ -1,4 +1,4 @@
-package qa.edu.qu.cmps312.studyr.database;
+package qa.edu.qu.cmps312.studyr.repository;
 
 public class ClassesTable {
 

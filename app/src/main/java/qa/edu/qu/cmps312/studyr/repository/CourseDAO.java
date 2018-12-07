@@ -38,7 +38,7 @@ public class CourseDAO implements CourseContract{
 
         values.put(CoursesTable.COLUMN_NAME_COURSE_ID,id);
         values.put(CoursesTable.COLUMN_NAME_COURSE_NAME,course.getCourseName());
-        values.put(CoursesTable.COLUMN_NAME_COURSE_COLORHEX,course.getCourseId());
+        values.put(CoursesTable.COLUMN_NAME_COURSE_COLORHEX,course.getColorId());
 
         return values;
     }

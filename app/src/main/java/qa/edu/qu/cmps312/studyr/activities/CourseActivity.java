@@ -23,15 +23,10 @@ import qa.edu.qu.cmps312.studyr.fragments.CourseDialogFragment;
 import qa.edu.qu.cmps312.studyr.models.Course;
 import qa.edu.qu.cmps312.studyr.repository.CourseDAO;
 
-public class CourseActivity extends AppCompatActivity implements CourseDialogFragment.DialogFragmentInteraction {
+public class CourseActivity extends AppCompatActivity implements CourseDialogFragment.DialogFragmentInteraction, CourseAdapter.AdapterInteraction {
 
     private Toolbar myToolbar;
     private final String TAG = "CourseActivity";
-    private AlertDialog courseDialog;
-    private Button saveCourseButton;
-    private Button cancelButton;
-    private Button chooseColorButton;
-    private ImageView colorPickedImageView;
     private FloatingActionButton floatingAddButton;
     private View myCustomCourseDialogLayout;
     private RecyclerView myRecyclerView;
@@ -53,12 +48,6 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
         myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
-        //getting the custom dialog layout and inflating it for course
-        myCustomCourseDialogLayout = getLayoutInflater().inflate(R.layout.add_edit_course_layout, null, false);
-        courseDialog = new AlertDialog.Builder(this)
-                .setView(myCustomCourseDialogLayout)
-                .create();
-
         floatingAddButton = findViewById(R.id.floatingActionButtonCourse);
         floatingAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,10 +62,10 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
         View rowLayout = getLayoutInflater().inflate(R.layout.course_row_design,null,false);
         myRecyclerView = findViewById(R.id.courseRecyclerView);
 
-        courses = Course.populateExampleCourses();
+        int counter = 0;
+        courses = dao.getAllCourses();
         totalAssignments = new ArrayList<>();
-        totalAssignments.add(10);
-        totalAssignments.add(5);
+        totalAssignments.add(counter++);
 
         courseAdapter = new CourseAdapter(courses,totalAssignments, this);
 
@@ -107,6 +96,18 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
         return true;
     }
 
+    @Override
+    public void deleteCourse(int position) {
+        
+    }
+
+    @Override
+    public void editCourse(Course course){
+        CourseDialogFragment dialogFragment = CourseDialogFragment
+                .newInstance(course);
+
+        dialogFragment.show(getSupportFragmentManager(), "MY_DIALOG");
+    }
     @Override
     public void addCourse(Course course) {
         dao.addCourse(dao.getAllCourses().size(),course);

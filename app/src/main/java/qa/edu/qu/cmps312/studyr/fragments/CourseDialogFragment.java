@@ -63,7 +63,7 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
         return fragment;
     }
 
-    //This method is used when we want to edit and exit a course
+    //This method is used when we want to edit and delete a course
     public static CourseDialogFragment newInstance(Course course) {
 
         isEdit = true;   //this is used by the initializeViews method
@@ -158,6 +158,8 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
                 break;
             case R.id.add_edit_course_save_button:
                 course.setCourseName(courseTitle.getText().toString());
+                course.setColorId(chosenColorHiddenText.getText().toString());
+                //Log.i("COURSEFRAG",course.getColorId());
                 if (validInput()) {
                     if (isEdit)
                         interaction.updateCourse(course);

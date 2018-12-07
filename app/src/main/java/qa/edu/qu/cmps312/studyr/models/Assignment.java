@@ -1,6 +1,9 @@
 package qa.edu.qu.cmps312.studyr.models;
 
-public class Assignment {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Assignment implements Parcelable{
     public int assignmentId;
     public String title;
     public int courseId;
@@ -16,6 +19,27 @@ public class Assignment {
         this.dueTime = dueTime;
         this.notes = notes;
     }
+
+    protected Assignment(Parcel in) {
+        assignmentId = in.readInt();
+        title = in.readString();
+        courseId = in.readInt();
+        dueDate = in.readString();
+        dueTime = in.readString();
+        notes = in.readString();
+    }
+
+    public static final Creator<Assignment> CREATOR = new Creator<Assignment>() {
+        @Override
+        public Assignment createFromParcel(Parcel in) {
+            return new Assignment(in);
+        }
+
+        @Override
+        public Assignment[] newArray(int size) {
+            return new Assignment[size];
+        }
+    };
 
     public int getAssignmentId() {
         return assignmentId;
@@ -63,5 +87,20 @@ public class Assignment {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(assignmentId);
+        dest.writeString(title);
+        dest.writeInt(courseId);
+        dest.writeString(dueDate);
+        dest.writeString(dueTime);
+        dest.writeString(notes);
     }
 }

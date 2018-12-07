@@ -1,8 +1,11 @@
 package qa.edu.qu.cmps312.studyr.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class Class {
+public class Class implements Parcelable{
 
     public int classId;
     public int courseId;
@@ -23,6 +26,29 @@ public class Class {
         this.days = days;
         this.location = location;
     }
+
+    protected Class(Parcel in) {
+        classId = in.readInt();
+        courseId = in.readInt();
+        startTime = in.readString();
+        endTime = in.readString();
+        startDate = in.readString();
+        endDate = in.readString();
+        days = in.readString();
+        location = in.readString();
+    }
+
+    public static final Creator<Class> CREATOR = new Creator<Class>() {
+        @Override
+        public Class createFromParcel(Parcel in) {
+            return new Class(in);
+        }
+
+        @Override
+        public Class[] newArray(int size) {
+            return new Class[size];
+        }
+    };
 
     public int getClassId() {
         return classId;
@@ -94,5 +120,22 @@ public class Class {
         c.add(new Class(2,1,"11:00","11:50","18/11/2018","20/11/2018","Sat,Sun,Tue,Thurs","C07-250"));
         c.add(new Class(3,2,"11:00","11:50","19/11/2018","20/11/2018","Mon","C07-105"));
         return c;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(classId);
+        dest.writeInt(courseId);
+        dest.writeString(startTime);
+        dest.writeString(endTime);
+        dest.writeString(startDate);
+        dest.writeString(endDate);
+        dest.writeString(days);
+        dest.writeString(location);
     }
 }

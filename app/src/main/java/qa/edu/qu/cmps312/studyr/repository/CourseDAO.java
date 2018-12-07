@@ -25,13 +25,13 @@ public class CourseDAO implements CourseContract{
         return rowId;
     }
 //
-//    public long deleteTodo(int todoId){
-//        //get writable database
-//        db=dbHelper.getWritableDatabase();
-//        String whereClause=ToDoTable.COLUMN_NAME_TODO_ID+" = ?";
-//        String selectionArgs[]= {String.valueOf(todoId)};
-//        return   db.delete(ToDoTable.TABLE_NAME,whereClause,selectionArgs);
-//    }
+    public long deleteCourse(int courseId){
+        //get writable database
+        db=dbHelper.getWritableDatabase();
+        String whereClause=CoursesTable.COLUMN_NAME_COURSE_ID+" = ?";
+        String selectionArgs[]= {String.valueOf(courseId)};
+        return   db.delete(CoursesTable.TABLE_NAME,whereClause,selectionArgs);
+    }
 
     private ContentValues changeCourseToContentValues(int id,Course course){
         ContentValues values=new ContentValues();

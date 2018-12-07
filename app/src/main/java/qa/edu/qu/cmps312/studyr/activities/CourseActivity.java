@@ -1,6 +1,9 @@
 package qa.edu.qu.cmps312.studyr.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.support.design.widget.FloatingActionButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -98,7 +102,57 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
 
     @Override
     public void deleteCourse(int position) {
-        
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.drawable.ic_warning_red_24dp);
+        builder.setTitle(R.string.delete_course+" "+ courses.get(position).getCourseName());
+        builder.setMessage(getString(R.string.delete_body_message));
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //todos.remove(position);
+                dao.deleteCourse(position);
+                Toast.makeText(CourseActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                courses = dao.getAllCourses();
+                courseAdapter.notifyChange(courses);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+// the following if condition is just to round the corners of the dialog
+        if (alertDialog != null && alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        alertDialog.show();
+
+
+
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.ic_warning_red_24dp)
+                .setTitle(R.string.delete_course)
+                .setMessage(getString(R.string.delete_body_message)
+                        + courses.get(position).getCourseName() + "'")
+                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //todos.remove(position);
+                        dao.deleteCourse(position);
+                        Toast.makeText(CourseActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                        courses = dao.getAllCourses();
+                        courseAdapter.notifyChange(courses);
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     @Override

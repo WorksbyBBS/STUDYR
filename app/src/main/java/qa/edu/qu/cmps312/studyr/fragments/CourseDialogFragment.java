@@ -3,10 +3,10 @@ package qa.edu.qu.cmps312.studyr.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +20,6 @@ import com.pavelsikun.vintagechroma.ChromaUtil;
 import com.pavelsikun.vintagechroma.IndicatorMode;
 import com.pavelsikun.vintagechroma.colormode.ColorMode;
 
-import android.support.annotation.ColorInt;
 import android.widget.Toast;
 
 import qa.edu.qu.cmps312.studyr.R;
@@ -34,7 +33,7 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
     Activity act = getActivity();
     EditText courseTitle;
     TextView courseFrag_title;
-    TextView chosenColorHiddenText;
+    TextView chosenColorText;
     ImageView courseColor;
     Button chooseColorButton;
     Button cancelButton;
@@ -85,6 +84,13 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        // the following if condition is just to round the corners of the dialog
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+
+
         return inflater.inflate(R.layout.add_edit_course_layout, container, false);
     }
 
@@ -96,12 +102,6 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
             this.course = getArguments().getParcelable(COURSE_KEY);
         else
             this.course = new Course();
-
-         /*
-         This method gets all the views....just to not overcrowd this method, I extracted all the
-         initialization of the views like findViewById to this method...this way our code will stay
-         clean
-         */
 
         initializeViews(rootView);
 
@@ -116,7 +116,7 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
         this.view = view;
         courseTitle = view.findViewById(R.id.add_edit_course_titleEDIT);
         courseFrag_title = view.findViewById(R.id.add_edit_courseFrag_title);
-        chosenColorHiddenText = view.findViewById(R.id.add_edit_course_chosen_color_TEXT);
+        chosenColorText = view.findViewById(R.id.add_edit_course_chosen_color_TEXT);
         courseColor = view.findViewById(R.id.add_edit_chosen_color_imageView);
         chooseColorButton = view.findViewById(R.id.add_edit_course_choose_color);
         cancelButton = view.findViewById(R.id.add_edit_course_cancel_button);
@@ -131,7 +131,9 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
         if (isEdit) {
             courseFrag_title.setText("Edit Course");
             courseTitle.setText(course.getCourseName());
+            chosenColorText.setText(course.getColorId());
             courseColor.setColorFilter(Color.parseColor(course.getColorId()));
+
         } else {
             courseFrag_title.setText("Add Course");
         }
@@ -158,7 +160,7 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
                 break;
             case R.id.add_edit_course_save_button:
                 course.setCourseName(courseTitle.getText().toString());
-                course.setColorId(chosenColorHiddenText.getText().toString());
+                course.setColorId(chosenColorText.getText().toString());
                 //Log.i("COURSEFRAG",course.getColorId());
                 if (validInput()) {
                     if (isEdit)
@@ -185,7 +187,7 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
     }
 
     public void onColorSelection(String color){
-        chosenColorHiddenText.setText(color);
+        chosenColorText.setText(color);
         course.setColorId(color);
         courseColor.setColorFilter(Color.parseColor(color));
     }

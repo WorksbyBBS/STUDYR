@@ -53,10 +53,11 @@
         android:id="@+id/add_edit_course_choose_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
         android:text="Choose Color"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintEnd_toStartOf="@+id/add_edit_course_chosen_color_TEXT"
+        app:layout_constraintHorizontal_bias="0.734"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_edit_course_titleEDIT" />
 
@@ -96,9 +97,16 @@
 
     <TextView
         android:id="@+id/add_edit_course_chosen_color_TEXT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="161dp" />
+        android:layout_width="51dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/add_edit_course_save_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_edit_course_titleEDIT"
+        app:layout_constraintVertical_bias="0.692" />
 </android.support.constraint.ConstraintLayout>

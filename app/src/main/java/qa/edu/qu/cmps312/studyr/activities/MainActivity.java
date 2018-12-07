@@ -1,4 +1,4 @@
-package qa.edu.qu.cmps312.studyr;
+package qa.edu.qu.cmps312.studyr.activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +23,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import qa.edu.qu.cmps312.studyr.R;
+import qa.edu.qu.cmps312.studyr.adapters.ClassAdapter;
 import qa.edu.qu.cmps312.studyr.models.Course;
 import qa.edu.qu.cmps312.studyr.models.Class;
 

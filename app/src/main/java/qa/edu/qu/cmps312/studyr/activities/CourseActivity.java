@@ -1,10 +1,6 @@
-package qa.edu.qu.cmps312.studyr;
+package qa.edu.qu.cmps312.studyr.activities;
 
 import android.content.Intent;
-import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
-import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
-
-import android.support.annotation.ColorInt;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,20 +8,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.support.design.widget.FloatingActionButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import qa.edu.qu.cmps312.studyr.R;
+import qa.edu.qu.cmps312.studyr.adapters.CourseAdapter;
+import qa.edu.qu.cmps312.studyr.fragments.CourseDialogFragment;
 import qa.edu.qu.cmps312.studyr.models.Course;
+import qa.edu.qu.cmps312.studyr.repository.CourseDAO;
 
-public class CourseActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity implements CourseDialogFragment.DialogFragmentInteraction {
 
     private Toolbar myToolbar;
     private final String TAG = "CourseActivity";
@@ -43,10 +41,13 @@ public class CourseActivity extends AppCompatActivity {
     private View rowLayout;
     private RecyclerView.LayoutManager layoutManager;
 
+    private CourseDAO dao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
+        dao= new CourseDAO(this);
 
         //add menu to toolbar
         myToolbar = findViewById(R.id.my_toolbar);
@@ -62,33 +63,8 @@ public class CourseActivity extends AppCompatActivity {
         floatingAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                courseDialog.show();
-            }
-        });
-
-        colorPickedImageView = myCustomCourseDialogLayout.findViewById(R.id.add_edit_chosen_color_imageView);
-        chooseColorButton = myCustomCourseDialogLayout.findViewById(R.id.add_edit_course_choose_color);
-
-        //PICK COLOR PART
-        chooseColorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final ColorPicker cp = new ColorPicker(CourseActivity.this);
-                cp.show();
-                cp.enableAutoClose(); // Enable auto-dismiss for the dialog
-                cp.setCallback(new ColorPickerCallback() {
-                    @Override
-                    public void onColorChosen(@ColorInt int color) {
-                        // Do whatever you want
-                        // Examples
-                        Log.d("Pure Hex", Integer.toHexString(color));
-
-                        colorPickedImageView.setColorFilter(color);
-
-                        // If the auto-dismiss option is not enable (disabled as default) you have to manually dimiss the dialog
-                        // cp.dismiss();
-                    }
-                });
+                CourseDialogFragment dialogFragment = CourseDialogFragment.newInstance();
+                dialogFragment.show(getSupportFragmentManager(), "MY_DIALOG");
             }
         });
 
@@ -129,5 +105,24 @@ public class CourseActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    public void addCourse(Course course) {
+        dao.addCourse(dao.getAllCourses().size(),course);
+        courses = dao.getAllCourses();
+        courseAdapter.notifyChange(courses);
+        dismissFragment();    //this will remove the dialog from screen
+
+    }
+
+    @Override
+    public void updateCourse(Course course) {
+
+    }
+
+    @Override
+    public void dismissFragment() {
+
     }
 }

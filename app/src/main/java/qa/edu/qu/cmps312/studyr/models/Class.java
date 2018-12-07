@@ -27,6 +27,9 @@ public class Class implements Parcelable{
         this.location = location;
     }
 
+    public Class() {
+    }
+
     protected Class(Parcel in) {
         classId = in.readInt();
         courseId = in.readInt();

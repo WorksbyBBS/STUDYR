@@ -29,6 +29,9 @@ public class Course implements Parcelable{
         }
     };
 
+    public Course() {
+    }
+
     public int getCourseId() {
         return courseId;
     }

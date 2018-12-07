@@ -29,6 +29,9 @@ public class Assignment implements Parcelable{
         notes = in.readString();
     }
 
+    public Assignment() {
+    }
+
     public static final Creator<Assignment> CREATOR = new Creator<Assignment>() {
         @Override
         public Assignment createFromParcel(Parcel in) {

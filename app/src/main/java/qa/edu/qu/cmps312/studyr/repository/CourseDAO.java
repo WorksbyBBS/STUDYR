@@ -17,7 +17,7 @@ public class CourseDAO implements CourseContract{
         this.dbHelper = new DBHelper(context);
     }
 
-    //add Book
+    //add Course
     public long addCourse(int id,Course course){
         db = dbHelper.getWritableDatabase();
         ContentValues values = changeCourseToContentValues(id,course);

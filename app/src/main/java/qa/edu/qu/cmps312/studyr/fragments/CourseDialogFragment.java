@@ -30,7 +30,6 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
     private static boolean isEdit = false;
 
     Course course;
-    Activity act = getActivity();
     EditText courseTitle;
     TextView courseFrag_title;
     TextView chosenColorText;
@@ -169,7 +168,7 @@ public class CourseDialogFragment extends android.support.v4.app.DialogFragment 
                         interaction.addCourse(course);
                     this.dismiss();
                 } else {
-                    Toast.makeText(getActivity(), "Please Fill Out all Details!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Please fill out all details!", Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.add_edit_course_cancel_button:

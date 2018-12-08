@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Class implements Parcelable{
+public class CourseClass implements Parcelable {
 
     public int classId;
     public int courseId;
@@ -16,7 +16,7 @@ public class Class implements Parcelable{
     public String days;
     public String location;
 
-    public Class(int classId, int courseId, String startTime, String endTime, String startDate, String endDate, String days, String location) {
+    public CourseClass(int classId, int courseId, String startTime, String endTime, String startDate, String endDate, String days, String location) {
         this.classId = classId;
         this.courseId = courseId;
         this.startTime = startTime;
@@ -27,10 +27,10 @@ public class Class implements Parcelable{
         this.location = location;
     }
 
-    public Class() {
+    public CourseClass() {
     }
 
-    protected Class(Parcel in) {
+    protected CourseClass(Parcel in) {
         classId = in.readInt();
         courseId = in.readInt();
         startTime = in.readString();
@@ -41,15 +41,15 @@ public class Class implements Parcelable{
         location = in.readString();
     }
 
-    public static final Creator<Class> CREATOR = new Creator<Class>() {
+    public static final Creator<CourseClass> CREATOR = new Creator<CourseClass>() {
         @Override
-        public Class createFromParcel(Parcel in) {
-            return new Class(in);
+        public CourseClass createFromParcel(Parcel in) {
+            return new CourseClass(in);
         }
 
         @Override
-        public Class[] newArray(int size) {
-            return new Class[size];
+        public CourseClass[] newArray(int size) {
+            return new CourseClass[size];
         }
     };
 
@@ -117,11 +117,11 @@ public class Class implements Parcelable{
         this.location = location;
     }
 
-    public static ArrayList<Class> populateExampleClass(){
-        ArrayList<Class> c = new ArrayList<>();
-        c.add(new Class(1,1,"8:00","8:50","17/11/2018","20/11/2018","Sat,Sun,Tue,Thurs","C07-224"));
-        c.add(new Class(2,1,"11:00","11:50","18/11/2018","20/11/2018","Sat,Sun,Tue,Thurs","C07-250"));
-        c.add(new Class(3,2,"11:00","11:50","19/11/2018","20/11/2018","Mon","C07-105"));
+    public static ArrayList<CourseClass> populateExampleClass() {
+        ArrayList<CourseClass> c = new ArrayList<>();
+        c.add(new CourseClass(1, 1, "8:00", "8:50", "17/11/2018", "20/11/2018", "Sat,Sun,Tue,Thurs", "C07-224"));
+        c.add(new CourseClass(2, 1, "11:00", "11:50", "18/11/2018", "20/11/2018", "Sat,Sun,Tue,Thurs", "C07-250"));
+        c.add(new CourseClass(3, 2, "11:00", "11:50", "19/11/2018", "20/11/2018", "Mon", "C07-105"));
         return c;
     }
 

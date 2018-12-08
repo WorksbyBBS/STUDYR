@@ -31,5 +31,9 @@
         parent="@android:style/Widget.TextView.SpinnerItem">
         <item name="android:textColor">@color/colorAccent</item>
     </style>
-
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+    </style>
 </resources>

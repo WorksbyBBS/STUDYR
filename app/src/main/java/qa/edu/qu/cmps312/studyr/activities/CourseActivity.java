@@ -103,9 +103,9 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
     @Override
     public void deleteCourse(int position) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.DialogTheme);
         builder.setIcon(R.drawable.ic_warning_red_24dp);
-        builder.setTitle(R.string.delete_course+" "+ courses.get(position).getCourseName());
+        builder.setTitle(getString(R.string.delete_course)+" "+ courses.get(position).getCourseName());
         builder.setMessage(getString(R.string.delete_body_message));
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
@@ -126,33 +126,34 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
         AlertDialog alertDialog = builder.create();
 // the following if condition is just to round the corners of the dialog
         if (alertDialog != null && alertDialog.getWindow() != null) {
-            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
+            //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
         alertDialog.show();
 
 
 
-        new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_warning_red_24dp)
-                .setTitle(R.string.delete_course)
-                .setMessage(getString(R.string.delete_body_message)
-                        + courses.get(position).getCourseName() + "'")
-                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //todos.remove(position);
-                        dao.deleteCourse(position);
-                        Toast.makeText(CourseActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                        courses = dao.getAllCourses();
-                        courseAdapter.notifyChange(courses);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).show();
+//        new AlertDialog.Builder(this)
+//                .setIcon(R.drawable.ic_warning_red_24dp)
+//                .setTitle(R.string.delete_course)
+//                .setMessage(getString(R.string.delete_body_message)
+//                        + courses.get(position).getCourseName() + "'")
+//                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        //todos.remove(position);
+//                        dao.deleteCourse(position);
+//                        Toast.makeText(CourseActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+//                        courses = dao.getAllCourses();
+//                        courseAdapter.notifyChange(courses);
+//                    }
+//                })
+//                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                }).show();
     }
 
     @Override

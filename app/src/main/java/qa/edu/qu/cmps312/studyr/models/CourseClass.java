@@ -15,9 +15,10 @@ public class CourseClass implements Parcelable {
     public String endDate;
     public String days;
     public String location;
+    private static int counter = 1;
 
-    public CourseClass(int classId, int courseId, String startTime, String endTime, String startDate, String endDate, String days, String location) {
-        this.classId = classId;
+    public CourseClass(int courseId, String startTime, String endTime, String startDate, String endDate, String days, String location) {
+        this.classId = counter;
         this.courseId = courseId;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -25,9 +26,12 @@ public class CourseClass implements Parcelable {
         this.endDate = endDate;
         this.days = days;
         this.location = location;
+        counter++;
     }
 
     public CourseClass() {
+        this.classId = counter;
+        counter++;
     }
 
     protected CourseClass(Parcel in) {
@@ -115,14 +119,6 @@ public class CourseClass implements Parcelable {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-    public static ArrayList<CourseClass> populateExampleClass() {
-        ArrayList<CourseClass> c = new ArrayList<>();
-        c.add(new CourseClass(1, 1, "8:00", "8:50", "17/11/2018", "20/11/2018", "Sat,Sun,Tue,Thurs", "C07-224"));
-        c.add(new CourseClass(2, 1, "11:00", "11:50", "18/11/2018", "20/11/2018", "Sat,Sun,Tue,Thurs", "C07-250"));
-        c.add(new CourseClass(3, 2, "11:00", "11:50", "19/11/2018", "20/11/2018", "Mon", "C07-105"));
-        return c;
     }
 
     @Override

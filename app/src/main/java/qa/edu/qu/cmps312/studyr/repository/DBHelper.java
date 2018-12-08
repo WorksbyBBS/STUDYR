@@ -37,6 +37,7 @@ public class DBHelper extends SQLiteOpenHelper implements CourseContract, ClassC
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_TITLE+" TEXT , "+
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_COURSE+" TEXT , "+
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_DUEDATE+" TEXT , "+
+            AssignmentsTable.COLUMN_NAME_ASSIGNMENT_PRIORITY + " TEXT , " +
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_DUETIME+" TEXT);";
 
     //dropping tables
@@ -60,7 +61,7 @@ public class DBHelper extends SQLiteOpenHelper implements CourseContract, ClassC
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_ASSIGNMENTS_TABLE);
-        db.execSQL(SQL_CREATE_CLASS_TABLE);
+        db.execSQL(SQL_DELETE_CLASSES_TABLE);
         db.execSQL(SQL_DELETE_COURSES_TABLE);
         onCreate(db);
     }

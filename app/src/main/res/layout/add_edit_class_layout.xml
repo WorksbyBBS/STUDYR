@@ -2,9 +2,9 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/dialog_background"
     android:minHeight="250dp"
     tools:layout_editor_absoluteY="25dp">
 
@@ -15,7 +15,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="28dp"
-        android:text="Add Class"
+        android:text="@string/add_class"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="84dp"
         android:layout_marginTop="45dp"
-        android:text="Course:"
+        android:text="@string/course"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:layout_marginStart="30dp"
-        android:text="S_Date"
+        android:text="@string/s_date"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_class_SDATE_BTN"
         app:layout_constraintStart_toStartOf="@+id/add_edit_class_SDATE_BTN" />
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:layout_marginEnd="22dp"
-        android:text="E_Date"
+        android:text="@string/e_date"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_class_EDATE_BTN"
         app:layout_constraintEnd_toEndOf="@+id/add_edit_class_EDATE_BTN" />
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="22dp"
         android:layout_marginStart="76dp"
-        android:text="Start Date"
+        android:text="@string/start_date"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -91,7 +91,7 @@
         android:layout_marginBottom="22dp"
         android:layout_marginEnd="71dp"
         android:layout_marginStart="70dp"
-        android:text="End Date"
+        android:text="@string/end_date"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_edit_class_STIME_BTN" />
@@ -102,7 +102,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="27dp"
         android:layout_marginTop="12dp"
-        android:text="S_Time"
+        android:text="@string/s_time"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="@+id/add_edit_class_STIME_BTN"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="12dp"
-        android:text="E_Time"
+        android:text="@string/e_time"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="@+id/add_edit_class_ETIME_BTN"
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
@@ -122,9 +122,9 @@
         android:id="@+id/add_edit_class_STIME_BTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="13dp"
-        android:text="Start Time"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/start_time"
         app:layout_constraintStart_toStartOf="@+id/tableLayout"
         app:layout_constraintTop_toBottomOf="@+id/add_edit_class_STIME" />
 
@@ -133,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginEnd="60dp"
-        android:text="End Time"
+        android:text="@string/end_time"
         app:layout_constraintBottom_toBottomOf="@+id/add_edit_class_STIME_BTN"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/add_edit_class_STIME_BTN" />
@@ -143,7 +143,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
-        android:text="Days:"
+        android:text="@string/days"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/add_edit_class_STIME_BTN"
@@ -154,8 +154,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_class_location"
         app:layout_constraintEnd_toEndOf="parent"
@@ -171,7 +171,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sat"
+                android:text="@string/sat"
                 android:textColor="@color/colorAccent" />
 
             <CheckBox
@@ -179,7 +179,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Sun"
+                android:text="@string/sun"
                 android:textColor="@color/colorAccent" />
 
             <CheckBox
@@ -187,7 +187,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Mon"
+                android:text="@string/mon"
                 android:textColor="@color/colorAccent" />
 
             <CheckBox
@@ -195,7 +195,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Tue"
+                android:text="@string/tue"
                 android:textColor="@color/colorAccent" />
         </TableRow>
 
@@ -208,15 +208,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Wed"
+                android:text="@string/wed"
                 android:textColor="@color/colorAccent" />
 
             <CheckBox
-                android:id="@+id/checkBoxThur"
+                android:id="@+id/checkBoxThu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Thur"
+                android:text="@string/thur"
                 android:textColor="@color/colorAccent" />
 
             <CheckBox
@@ -224,7 +224,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Fri"
+                android:text="@string/fri"
                 android:textColor="@color/colorAccent" />
         </TableRow>
 
@@ -235,7 +235,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
-        android:text="Location:"
+        android:text="@string/location"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/add_edit_class_location"
@@ -248,7 +248,7 @@
         android:layout_marginBottom="19dp"
         android:layout_marginEnd="28dp"
         android:ems="10"
-        android:hint="Building - Room No."
+        android:hint="@string/building_room_no"
         android:inputType="textPersonName"
         android:textColor="@color/colorAccent"
         app:layout_constraintBottom_toTopOf="@+id/add_edit_class_cancel_btn"
@@ -260,7 +260,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="8dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintBaseline_toBaselineOf="@+id/add_edit_class_save_btn"
         app:layout_constraintEnd_toEndOf="@+id/add_edit_class_STIME_BTN"
         app:layout_constraintHorizontal_bias="1.0"
@@ -273,7 +273,7 @@
         android:layout_marginBottom="35dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_edit_class_cancel_btn" />

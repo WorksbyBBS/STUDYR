@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -59,7 +58,7 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
     CheckBox checkBoxMon;
     CheckBox checkBoxTue;
     CheckBox checkBoxWed;
-    CheckBox checkBoxThur;
+    CheckBox checkBoxThu;
     CheckBox checkBoxFri;
 
 
@@ -167,7 +166,7 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
         checkBoxMon = view.findViewById(R.id.checkBoxMon);
         checkBoxTue = view.findViewById(R.id.checkBoxTue);
         checkBoxWed = view.findViewById(R.id.checkBoxWed);
-        checkBoxThur = view.findViewById(R.id.checkBoxThur);
+        checkBoxThu = view.findViewById(R.id.checkBoxThu);
         checkBoxFri = view.findViewById(R.id.checkBoxFri);
 
         cancelButton.setOnClickListener(this);
@@ -197,6 +196,15 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
             startTime.setText(classObj.getStartTime());
             endTime.setText(classObj.getEndTime());
             location.setText(classObj.getLocation());
+
+            //split days and check boxes
+            String[] days = classObj.getDays().split("/");
+            for (int i = 0; i < days.length; i++) {
+                String checkBoxName = "checkBox" + days[i];
+                int id = getResources().getIdentifier(checkBoxName, "id", getActivity().getPackageName());
+                CheckBox checkBox = view.findViewById(id);
+                checkBox.setChecked(true);
+            }
 
 
         } else {
@@ -248,7 +256,13 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), R.style.DateTimeDialogTheme, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        startTime.setText(hourOfDay + ":" + minute);
+                        String AM_PM;
+                        if (hourOfDay < 12) {
+                            AM_PM = "AM";
+                        } else {
+                            AM_PM = "PM";
+                        }
+                        startTime.setText(hourOfDay + ":" + minute + (minute == 0 ? "0" : "") + " " + AM_PM);
                     }
                 }, hr, min, false);
                 timePickerDialog.show();
@@ -260,7 +274,13 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
                 TimePickerDialog timePickerDialog2 = new TimePickerDialog(getActivity(), R.style.DateTimeDialogTheme, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        endTime.setText(hourOfDay + ":" + minute);
+                        String AM_PM;
+                        if (hourOfDay < 12) {
+                            AM_PM = "AM";
+                        } else {
+                            AM_PM = "PM";
+                        }
+                        endTime.setText(hourOfDay + ":" + minute + (minute == 0 ? "0" : "") + " " + AM_PM);
                     }
                 }, hr4, min4, false);
                 timePickerDialog2.show();
@@ -301,7 +321,7 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
                 && !startDate.getText().toString().equalsIgnoreCase("--/--/--")
                 && !endDate.getText().toString().equalsIgnoreCase("--/--/--")
                 && (checkBoxSat.isChecked() || checkBoxSun.isChecked() || checkBoxMon.isChecked()
-                || checkBoxTue.isChecked() || checkBoxWed.isChecked() || checkBoxThur.isChecked() || checkBoxFri.isChecked()))
+                || checkBoxTue.isChecked() || checkBoxWed.isChecked() || checkBoxThu.isChecked() || checkBoxFri.isChecked()))
             return true;
         return false;
     }
@@ -326,8 +346,8 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
             days += "Tue/";
         if (checkBoxWed.isChecked())
             days += "Wed/";
-        if (checkBoxThur.isChecked())
-            days += "Thur/";
+        if (checkBoxThu.isChecked())
+            days += "Thu/";
         if (checkBoxFri.isChecked())
             days += "Fri/";
         return days;

@@ -10,6 +10,7 @@ public class Course implements Parcelable{
     private int courseId;
     private String courseName;
     private String colorId;
+    private static int counter = 1;
 
     protected Course(Parcel in) {
         courseId = in.readInt();
@@ -30,6 +31,8 @@ public class Course implements Parcelable{
     };
 
     public Course() {
+        this.courseId = counter;
+        counter++;
     }
 
     public int getCourseId() {
@@ -56,17 +59,11 @@ public class Course implements Parcelable{
         this.colorId = colorId;
     }
 
-    public Course(int courseId, String courseName, String colorId) {
-        this.courseId = courseId;
+    public Course(String courseName, String colorId) {
+        this.courseId = counter;
         this.courseName = courseName;
         this.colorId = colorId;
-    }
-
-    public static ArrayList<Course> populateExampleCourses(){
-        ArrayList<Course> c = new ArrayList<>();
-        c.add(new Course(1,"GENG300","#42f4f1"));
-        c.add(new Course(2,"CMPS312","#d3f441"));
-        return c;
+        counter++;
     }
 
     @Override

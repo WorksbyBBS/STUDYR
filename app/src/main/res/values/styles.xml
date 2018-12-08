@@ -20,12 +20,12 @@
 
     <style name="CalenderViewDateCustomText" parent="android:TextAppearance.DeviceDefault.Small">
         <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:weekNumberColor">@color/colorPrimary</item>
+        <item name="android:weekNumberColor">@color/colorAccent</item>
         <item name="android:selectedWeekBackgroundColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="CalenderViewWeekCustomText" parent="android:TextAppearance.DeviceDefault.Small">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
     <style name="MySpinnerLook"
         parent="@android:style/Widget.TextView.SpinnerItem">

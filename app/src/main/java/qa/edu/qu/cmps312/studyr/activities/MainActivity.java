@@ -19,6 +19,7 @@ import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -68,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
         //RECYCLERVIEW PART
         calendarView = findViewById(R.id.calendarView);
 
-        //View rowLayout = getLayoutInflater().inflate(R.layout.class_row_design,null,false);
         myRecyclerView = findViewById(R.id.classRecyclerView);
 
         courses = courseDAO.getAllCourses();
@@ -88,15 +88,15 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
                 classesInSpecificDate.clear();
                 String date = String.format(dayOfMonth+"/"+(month+1)+"/"+year);
                 setSpecificClasses(date);
-                Log.i(TAG,classesInSpecificDate.size()+"ONSELECTED");
             }
         });
-
-        Log.i(TAG,classesInSpecificDate.size()+"RIGHT BEFORE ADAPTER");
 
 
         layoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(layoutManager);
+
+        classAdapter = new ClassAdapter(classesInSpecificDate, courses, this);
+        myRecyclerView.setAdapter(classAdapter);
 
         floatingAddButton = findViewById(R.id.floatingActionButtonClass);
         floatingAddButton.setOnClickListener(new View.OnClickListener() {
@@ -106,18 +106,6 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
                 dialogFragment.show(getSupportFragmentManager(), "MY_DIALOG");
             }
         });
-
-//        //Spinner For Dialog
-//        List<String> spinnerArray =  new ArrayList<String>();
-//        for(int i=0;i<courses.size();i++)
-//            spinnerArray.add(courses.get(i).getCourseName());
-//
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                this, R.layout.spinner_style, spinnerArray);
-//
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        Spinner sItems = (Spinner) myCustomClassDialogLayout.findViewById(R.id.add_edit_class_spinner);
-//        sItems.setAdapter(adapter);
 
     }
 
@@ -142,20 +130,54 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
     }
 
     public void setSpecificClasses(String date) {
-        for (int i = 0; i < courseClasses.size(); i++) {
-            //Toast.makeText(MainActivity.this,date,Toast.LENGTH_LONG).show();
-            if (date.equalsIgnoreCase(courseClasses.get(i).getStartDate())) {
-                classesInSpecificDate.add(courseClasses.get(i));
+
+        //get all classes in this specific day 'NAME' i.e: all classes on SUNday
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date chosenDate = null;
+        Date startDate = null;
+        Date endDate = null;
+        try {
+            chosenDate = dateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
             }
+        String dayOfWeek = new SimpleDateFormat("EEE").format(chosenDate);
+        ArrayList<CourseClass> classesInSpecificDays = dao.getClassesOnDay(dayOfWeek);
+        Log.i("Mainact", classesInSpecificDays.size() + "");
+
+
+        //then for each on this list, check if it falls within the start and end range
+        for (int i = 0; i < classesInSpecificDays.size(); i++) {
+            try {
+                startDate = dateFormat.parse(classesInSpecificDays.get(i).getStartDate());
+                endDate = dateFormat.parse(classesInSpecificDays.get(i).getEndDate());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (!chosenDate.before(startDate) && !chosenDate.after(endDate))
+                classesInSpecificDate.add(classesInSpecificDays.get(i));
         }
-        //Toast.makeText(MainActivity.this,classesInSpecificDate.size()+"",Toast.LENGTH_LONG).show();
+
+        Log.i("Mainact", classesInSpecificDate.size() + " on " + chosenDate.toString());
+
+        //then set adapter
         classAdapter = new ClassAdapter(classesInSpecificDate,courses,this);
         myRecyclerView.setAdapter(classAdapter);
-        //return classesInSpecificDate;
+
     }
 
     @Override
-    public void deleteClass(int position) {
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        if (intent.getExtras() != null) {
+        }
+        courseClasses = dao.getAllClasses();
+        classAdapter.notifyChange(courseClasses);
+    }
+
+    @Override
+    public void deleteClass(CourseClass courseClass) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogTheme);
         builder.setIcon(R.drawable.ic_warning_red_24dp);
         builder.setTitle(getString(R.string.delete_class));
@@ -163,8 +185,7 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                //todos.remove(position);
-                dao.deleteClass(position);
+                dao.deleteClass(courseClass);
                 Toast.makeText(MainActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
                 courseClasses = dao.getAllClasses();
                 classAdapter.notifyChange(courseClasses);
@@ -195,8 +216,10 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
 
     @Override
     public void addClass(CourseClass classObj) {
-        dao.addClass(dao.getAllClasses().size(), classObj);
+        Log.i("MAINACT", courseClasses.size() + "");
+        dao.addClass(classObj);
         courseClasses = dao.getAllClasses();
+        Log.i("MAINACT", courseClasses.size() + "");
         classAdapter.notifyChange(courseClasses);
         dismissFragment();    //this will remove the dialog from screen
     }

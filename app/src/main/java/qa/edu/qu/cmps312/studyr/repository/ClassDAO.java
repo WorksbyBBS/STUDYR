@@ -17,26 +17,26 @@ public class ClassDAO implements ClassContract {
         this.dbHelper = new DBHelper(context);
     }
 
-    public long addClass(int id, CourseClass courseClass) {
+    public long addClass(CourseClass courseClass) {
         db = dbHelper.getWritableDatabase();
-        ContentValues values = changeCourseToContentValues(id, courseClass);
+        ContentValues values = changeCourseToContentValues(courseClass);
         long rowId = db.insert(ClassContract.ClassesTable.TABLE_NAME, null, values);
         return rowId;
     }
 
     //
-    public long deleteClass(int classId) {
+    public long deleteClass(CourseClass courseClass) {
         //get writable database
         db = dbHelper.getWritableDatabase();
         String whereClause = ClassesTable.COLUMN_NAME_CLASS_ID + " = ?";
-        String selectionArgs[] = {String.valueOf(classId)};
+        String selectionArgs[] = {String.valueOf(courseClass.classId)};
         return db.delete(ClassContract.ClassesTable.TABLE_NAME, whereClause, selectionArgs);
     }
 
-    private ContentValues changeCourseToContentValues(int id, CourseClass courseClass) {
+    private ContentValues changeCourseToContentValues(CourseClass courseClass) {
         ContentValues values = new ContentValues();
 
-        values.put(ClassesTable.COLUMN_NAME_CLASS_ID, id);
+        values.put(ClassesTable.COLUMN_NAME_CLASS_ID, courseClass.getClassId());
         values.put(ClassesTable.COLUMN_NAME_CLASS_COURSE, courseClass.getCourseId());
         values.put(ClassesTable.COLUMN_NAME_CLASS_DAYS, courseClass.getDays());
         values.put(ClassesTable.COLUMN_NAME_CLASS_STARTDATE, courseClass.getStartDate());
@@ -78,5 +78,21 @@ public class ClassDAO implements ClassContract {
             } while (cursor.moveToNext());
         }
         return classes;
+    }
+
+    public ArrayList<CourseClass> getClassesOnDay(String day) {
+        ArrayList<CourseClass> specificClasses = new ArrayList<>();
+
+        db = dbHelper.getReadableDatabase();
+
+
+        String selectQuery = "SELECT * FROM " + ClassContract.ClassesTable.TABLE_NAME + " WHERE " + ClassContract.ClassesTable.COLUMN_NAME_CLASS_DAYS + " LIKE \'%" + day + "%\';";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+                specificClasses.add(changeCursorToTodoObject(cursor));
+            } while (cursor.moveToNext());
+        }
+        return specificClasses;
     }
 }

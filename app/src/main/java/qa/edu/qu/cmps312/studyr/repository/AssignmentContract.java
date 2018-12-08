@@ -10,6 +10,8 @@ public interface AssignmentContract {
         public static final String COLUMN_NAME_ASSIGNMENT_COURSE = "courseId";
         public static final String COLUMN_NAME_ASSIGNMENT_DUEDATE = "dueDate";
         public static final String COLUMN_NAME_ASSIGNMENT_DUETIME = "dueTime";
+        public static final String COLUMN_NAME_ASSIGNMENT_PRIORITY = "priority";
 
     }
 }
+

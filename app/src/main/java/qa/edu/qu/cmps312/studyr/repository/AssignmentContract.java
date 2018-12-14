@@ -11,6 +11,7 @@ public interface AssignmentContract {
         public static final String COLUMN_NAME_ASSIGNMENT_DUEDATE = "dueDate";
         public static final String COLUMN_NAME_ASSIGNMENT_DUETIME = "dueTime";
         public static final String COLUMN_NAME_ASSIGNMENT_PRIORITY = "priority";
+        public static final String COLUMN_NAME_ASSIGNMENT_NOTES = "notes";
 
     }
 }

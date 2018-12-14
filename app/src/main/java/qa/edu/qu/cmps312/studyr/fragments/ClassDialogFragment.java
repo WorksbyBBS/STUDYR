@@ -197,6 +197,13 @@ public class ClassDialogFragment extends android.support.v4.app.DialogFragment i
             endTime.setText(classObj.getEndTime());
             location.setText(classObj.getLocation());
 
+            int index = 0;
+            for (int i = 0; i < courseArrayList.size(); i++) {
+                if (courseArrayList.get(i).getCourseId() == classObj.getCourseId())
+                    index = i;
+            }
+            courseSpinner.setSelection(index);
+
             //split days and check boxes
             String[] days = classObj.getDays().split("/");
             for (int i = 0; i < days.length; i++) {

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import qa.edu.qu.cmps312.studyr.models.Assignment;
 import qa.edu.qu.cmps312.studyr.models.CourseClass;
 
 public class ClassDAO implements ClassContract {
@@ -31,6 +32,17 @@ public class ClassDAO implements ClassContract {
         String whereClause = ClassesTable.COLUMN_NAME_CLASS_ID + " = ?";
         String selectionArgs[] = {String.valueOf(courseClass.classId)};
         return db.delete(ClassContract.ClassesTable.TABLE_NAME, whereClause, selectionArgs);
+    }
+
+    public long updateClass(CourseClass courseClass) {
+        //get writable database
+        db = dbHelper.getWritableDatabase();
+        String whereClause = ClassesTable.COLUMN_NAME_CLASS_ID + " = ?";
+        String selectionArgs[] = {String.valueOf(courseClass.getClassId())};
+
+        ContentValues values = changeCourseToContentValues(courseClass);
+
+        return db.update(ClassesTable.TABLE_NAME, values, whereClause, selectionArgs);
     }
 
     private ContentValues changeCourseToContentValues(CourseClass courseClass) {

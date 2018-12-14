@@ -226,7 +226,11 @@ public class MainActivity extends AppCompatActivity implements ClassDialogFragme
 
     @Override
     public void updateClass(CourseClass classObj) {
-
+        dao.updateClass(classObj);
+        courseClasses = dao.getAllClasses();
+        classAdapter.notifyChange(courseClasses);
+//        adapter.notifyDataSetChanged();
+        dismissFragment();
     }
 
     @Override

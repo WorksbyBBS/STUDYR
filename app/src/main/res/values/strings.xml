@@ -53,4 +53,5 @@
     <string name="HWdue_time">Due Time:</string>
     <string name="HWnotes">Notes</string>
     <string name="HWselect_time">Select Time</string>
+    <string name="add_assignment">Add Assignment</string>
 </resources>

@@ -71,7 +71,7 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
         totalAssignments = new ArrayList<>();
         totalAssignments.add(counter++);
 
-        courseAdapter = new CourseAdapter(courses,totalAssignments, this);
+        courseAdapter = new CourseAdapter(courses, this);
 
         layoutManager = new LinearLayoutManager(this);
         myRecyclerView.setLayoutManager(layoutManager);
@@ -159,7 +159,11 @@ public class CourseActivity extends AppCompatActivity implements CourseDialogFra
 
     @Override
     public void updateCourse(Course course) {
-
+        dao.updateCourse(course);
+        courses = dao.getAllCourses();
+        courseAdapter.notifyChange(courses);
+//        adapter.notifyDataSetChanged();
+        dismissFragment();
     }
 
     @Override

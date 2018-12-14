@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper implements CourseContract, ClassContract, AssignmentContract{
 
     public static final String DATABASE_NAME = "studyr.db";
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 
 
     //creating tables
@@ -38,6 +38,7 @@ public class DBHelper extends SQLiteOpenHelper implements CourseContract, ClassC
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_COURSE+" TEXT , "+
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_DUEDATE+" TEXT , "+
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_PRIORITY + " TEXT , " +
+            AssignmentsTable.COLUMN_NAME_ASSIGNMENT_NOTES + " TEXT , " +
             AssignmentsTable.COLUMN_NAME_ASSIGNMENT_DUETIME+" TEXT);";
 
     //dropping tables

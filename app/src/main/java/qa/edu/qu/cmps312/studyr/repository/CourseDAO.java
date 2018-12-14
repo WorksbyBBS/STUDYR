@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
+import qa.edu.qu.cmps312.studyr.models.Assignment;
 import qa.edu.qu.cmps312.studyr.models.Course;
 
 public class CourseDAO implements CourseContract, ClassContract, AssignmentContract {
@@ -23,6 +24,33 @@ public class CourseDAO implements CourseContract, ClassContract, AssignmentContr
         ContentValues values = changeCourseToContentValues(course);
         long rowId = db.insert(CourseContract.CoursesTable.TABLE_NAME, null, values);
         return rowId;
+    }
+
+    public long updateCourse(Course course) {
+        //get writable database
+        db = dbHelper.getWritableDatabase();
+        String whereClause = CoursesTable.COLUMN_NAME_COURSE_ID + " = ?";
+        String selectionArgs[] = {String.valueOf(course.getCourseId())};
+
+        //content values
+
+        ContentValues values = changeCourseToContentValues(course);
+
+        return db.update(CoursesTable.TABLE_NAME, values, whereClause, selectionArgs);
+    }
+
+    //get course
+    public Course getCourse(int courseId) {
+        //1
+        db = dbHelper.getWritableDatabase();
+        String columns[] = {CoursesTable.COLUMN_NAME_COURSE_NAME, CoursesTable.COLUMN_NAME_COURSE_COLORHEX, CoursesTable.COLUMN_NAME_COURSE_ID};
+        String selection = CoursesTable.COLUMN_NAME_COURSE_ID + " = ?";
+        String selectionArgs[] = {String.valueOf(courseId)};
+        Cursor cursor = db.query(CoursesTable.TABLE_NAME, columns, selection, selectionArgs,
+                null, null, null, null);
+        if (cursor.moveToFirst())
+            return changeCursorToTodoObject(cursor);
+        else return null;
     }
 
     //delete course and all its assignments and classes!!!

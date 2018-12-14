@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".activities.AssignmentsActivity" />
         <activity android:name=".activities.CourseActivity"></activity>
+
+        <receiver android:name="qa.edu.qu.cmps312.studyr.receivers.Receiver"></receiver>
     </application>
 
 </manifest>

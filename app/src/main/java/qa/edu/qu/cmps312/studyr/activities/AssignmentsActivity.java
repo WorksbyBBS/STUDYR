@@ -235,7 +235,7 @@ public class AssignmentsActivity extends AppCompatActivity implements NewAssignm
         //convert assignment date string, subtract 1 day to be used in notification
         String[] dueDate = assignment.getDueDate().split("/");
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Integer.valueOf(dueDate[2]), Integer.valueOf(dueDate[1]), Integer.valueOf(dueDate[0]), 12, 00, 0);
+        calendar.set(Integer.valueOf(dueDate[2]), (Integer.valueOf(dueDate[1]) - 1), Integer.valueOf(dueDate[0]), 12, 00, 0);
 
         //subtract one day
         calendar.add(Calendar.DAY_OF_MONTH, -1);

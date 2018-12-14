@@ -185,7 +185,7 @@ public class NewAssignmentFragment extends android.support.v4.app.DialogFragment
                 new DatePickerDialog(getActivity(), R.style.DateTimeDialogTheme, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        assignment.setDueDate(dayOfMonth + "/" + month + "/" + year);
+                        assignment.setDueDate(dayOfMonth + "/" + (month + 1) + "/" + year);
                     }
                 }, Calendar.getInstance().get(Calendar.YEAR)
                         , Calendar.getInstance().get(Calendar.MONTH),

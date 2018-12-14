@@ -182,26 +182,36 @@ public class AssignmentsActivity extends AppCompatActivity implements NewAssignm
     //Todo course id change to course name
     @Override
     public void deleteAssignment(Assignment assignment) {
-        new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_warning_red_24dp)
-                .setTitle("Delete Completed Assignment " + assignment.getTitle())
-                .setMessage("Are You Sure You Want to Delete "
-                        + assignment.getTitle() + " in Course " + courseDAO.getCourse(assignment.getCourseId()))
-                .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dao.deleteAssignment(assignment.getAssignmentId());
-                        Toast.makeText(AssignmentsActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
-                        assignments = dao.getAllAssignments(flag);
-                        adapter.notifyChange(assignments);
-                    }
-                })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).show();
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogTheme);
+        builder.setIcon(R.drawable.ic_warning_red_24dp);
+        builder.setTitle("Delete Completed Assignment " + assignment.getTitle());
+        builder.setMessage("Are You Sure You Want to Delete "
+                + assignment.getTitle() + " in Course " + courseDAO.getCourse(assignment.getCourseId()).getCourseName());
+        builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dao.deleteAssignment(assignment.getAssignmentId());
+                Toast.makeText(AssignmentsActivity.this, "Deleted", Toast.LENGTH_SHORT).show();
+                assignments = dao.getAllAssignments(flag);
+                adapter.notifyChange(assignments);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+// the following if condition is just to round the corners of the dialog
+        if (alertDialog != null && alertDialog.getWindow() != null) {
+            alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_background);
+            //alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        }
+        alertDialog.show();
+
     }
 
     @Override
